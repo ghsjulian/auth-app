@@ -30,7 +30,18 @@
 
 ### About This Project
 
-**This is a mini facebook social networking project developed by using MERN STACK technology. This is really awesome and cool and it's actually behave like the Facebook. Such as user can create their own account and use it . A users can connect with other other users and make friends and he can post like and comment on others post. Once he create an account he can send request to a user and after being friends they can talk in messenger one to one in a private chat! I hope it is awesome project!!! You should use it once and thanks me later.**
+**This simple learning based project which helped me to learn about the api authentication system with react and nodejs. I built this project to develop my learning skills specially in mern stack.**
+
+**In this project i used all the advanced functionalities and configuration which often many industries and company use in their projects**
+
+**I learn so many things in this project like how client authenticate over the API and database, how the app will manage users authentication system and stages**
+
+**It has all the advance functionalities which I've used in it. For more details about this project or if you want to see the project sample like screenshot of UI, you can scroll down in this readme file.**
+
+**For more details see the project live demo...**
+
+**Don't forget to thanks me !**
+
 
 ---
 
@@ -46,31 +57,21 @@
 
 -   **Edit User Profile**
 
--   **Create A New Post**
+-   **Edit User Profile Pic**
 
--   **Edit A Post**
+-   **Change Password System**
 
--   **Delete A Post**
+-   **Forget Password/Reset Password System**
 
--   **Like And Comment On Post**
+-   **Sending OTP Via Email**
 
--   **Send Friend Request**
+-   **JWT (JSON Web Token) Authentication**
 
--   **Accept Friend Request**
+-   **Password Hashing System With (bcryptjs)**
 
--   **Get Notification**
+-   **Get User Information In Profile**
 
--   **Live Search A User**
-
--   **Visit Someones Profile**
-
--   **See Friends Online Visibility**
-
--   **Send Message To A Friend**
-
--   **Real Time Chatting System**
-
--   **Send File To Your Friend**
+-   **User Can Delete His Account**
 
 -   **More...**
 

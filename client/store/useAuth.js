@@ -91,10 +91,15 @@ const useAuthStore = create((set, get) => ({
     getUser: async () => {
         set({ isFetching: true });
         try {
-            const res = axios.get("/get-user");
-            console.log(res.data);
+            const res = await axios.get("/get-user");
+            if (!res?.data?._id) throw new Error(res?.data?.message);
+            set({ authUser: res?.data });
+            localStorage.setItem("auth-user", JSON.stringify(res?.data));
         } catch (error) {
-            console.log(error);
+            console.error(
+                "\n[!] Error While Fetching User ---> ",
+                error?.response?.data?.message
+            );
         } finally {
             set({ isFetching: false });
         }
@@ -115,7 +120,6 @@ const useAuthStore = create((set, get) => ({
                 console.log("\n[+] OTP ---> " + res?.data?.otp);
             }, 2500);
         } catch (error) {
-            console.log(error);
             btnRef.current.textContent = "Send OTP";
             msgRef.current.classList.add("error");
             msgRef.current.textContent = error?.response?.data?.message;
@@ -138,7 +142,6 @@ const useAuthStore = create((set, get) => ({
             if (!res?.data?.success) throw new Error(res?.data?.message);
             msgRef.current.classList.add("success");
             msgRef.current.textContent = res?.data?.message;
-           
         } catch (error) {
             msgRef.current.classList.add("error");
             msgRef.current.textContent = error?.response?.data?.message;
@@ -152,6 +155,16 @@ const useAuthStore = create((set, get) => ({
             msgRef.current.textContent = "";
             msgRef.current.removeAttribute("class");
         }, 2500);
+    },
+    updateProfilePic: async base64Img => {
+        try {
+            const res = await axios.post("/update-profile-pic", { base64Img });
+            if (!res?.data?._id) throw new Error(res?.data?.message);
+            localStorage.setItem("auth-user", JSON.stringify(res?.data));
+            set({ authUser: res?.data });
+        } catch (error) {
+            console.error("\n[!] Error While Uploading Photo --> ", error);
+        }
     }
 }));
 

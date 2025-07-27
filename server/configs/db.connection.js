@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const DB = process.env.SERVER_DB || "auth-app";
-const URI = process.env.SERVER_URI || "mongodb://localhost:27017/";
+const DB = process.env.SERVER_DB  //"auth-app";
+const URI = process.env.SERVER_URI //"mongodb://localhost:27017/";
 
 const createConnection = async () => {
     try {

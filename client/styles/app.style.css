@@ -211,6 +211,25 @@ p {
     object-fit: cover;
     border-radius: 50%;
 }
+.profile label {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    z-index: 900;
+    padding: 1px;
+    background: #00a5e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile label img {
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+}
 .profile-page .user-info {
     width: 100%;
     height: 100%;

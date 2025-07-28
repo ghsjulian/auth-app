@@ -1,7 +1,6 @@
 const userModel = require("../models/user.model")
 const {createHash} = require("../functions/password.hash")
 
-
 const resetPassword = async(req,res)=>{
     try {
         const {email, newPassword} = req?.body 

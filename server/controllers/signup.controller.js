@@ -28,7 +28,6 @@ const signupController = async (req, res) => {
             message: "User Created Successfully"
         });
     } catch (error) {
-        console.log("\n[!] Error In signup.controller.js --> ", error.message)
         return res.status(403).json({
             success: false,
             message: error.message || "Server Error - 403"

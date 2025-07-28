@@ -31,7 +31,6 @@ const loginController = async (req, res) => {
             message: "User Logged In Successfully"
         });
     } catch (error) {
-        console.log("\n[!] Error In login.controller.js --> ", error.message);
         return res.status(403).json({
             success: false,
             message: error.message || "Server Error - 403"

@@ -1,4 +1,5 @@
 const userModel = require("../models/user.model")
+const sendMail = require("../configs/mailer.config")
 
 const senOTP = async(req,res)=>{
     try {
@@ -13,6 +14,7 @@ const senOTP = async(req,res)=>{
         / verify the otp , we will send the otp 
         / for testing here with the api response
         */
+        await sendMail(isUser?.name,email,otp)
         return res.status(200).json({
             success: true,
             otp : otp,

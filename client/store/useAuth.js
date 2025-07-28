@@ -120,7 +120,7 @@ const useAuthStore = create((set, get) => ({
             setTimeout(() => {
                 set({ tempEmail: email });
                 set({ OTP: res?.data?.otp });
-                console.log("\n[+] OTP ---> " + res?.data?.otp);
+                //console.log("\n[+] OTP ---> " + res?.data?.otp);
             }, 2500);
         } catch (error) {
             btnRef.current.textContent = "Send OTP";

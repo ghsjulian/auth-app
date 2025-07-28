@@ -8,6 +8,7 @@
     "scripts": {
         "start": "node server/server.js",
         "server": "nodemon server/server.js",
+        "deploy" : "npm install && npm run build",
         "client": "vite",
         "dev": "vite",
         "build": "vite build",

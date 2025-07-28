@@ -20,14 +20,22 @@ app.use(
     })
 );
 
+app.use(express.static(path.join(__dirname, "../dist")));
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, "../public")));
+// Define the index route
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../dist/index.html"));
+});
+
 // Rwequiring all the routes
 // Defined All the endpoints of API...
-const userRoutes = require("./routes/user.routes")
-app.use("/api/v1/user",userRoutes)
+const userRoutes = require("./routes/user.routes");
+app.use("/api/v1/user", userRoutes);
 
-// Rwequiring Database connection 
+// Rwequiring Database connection
 // And call this method directly...
-require("./configs/db.connection")()
-app.listen(PORT,()=>{
-    console.log(`\n[+] Server Listening On Port -- ${PORT}\n`)
-})
+require("./configs/db.connection")();
+app.listen(PORT, () => {
+    console.log(`\n[+] Server Listening On Port -- ${PORT}\n`);
+});

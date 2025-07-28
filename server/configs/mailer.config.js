@@ -5,8 +5,8 @@ const sendMail = async (name, toEmail, otp) => {
         let transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
-                user: process.env.EMAIL_ADDRESS,//"ghsgobindo@gmail.com",
-                pass: process.env.EMAIL_PASSWORD//"ftlz ence jffh gmll"
+                user: process.env.EMAIL_ADDRESS,
+                pass: process.env.EMAIL_PASSWORD
             }
         });
         let mailOptions = {
@@ -101,7 +101,7 @@ const sendMail = async (name, toEmail, otp) => {
             
             <p>We received a request to verify your identity. Please use the following One-Time Password (OTP) to complete your verification:</p>
             
-            <div class="otp-code">[${otp}]</div>
+            <h2 class="otp-code">[${otp}]</h2>
             
             <p>This code expires in <strong>15 minutes</strong>. Please do not share this code with anyone.</p>
             

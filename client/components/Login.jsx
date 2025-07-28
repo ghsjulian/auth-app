@@ -4,6 +4,7 @@ import MainContainer from "../layouts/MainContainer";
 import useAuthStore from "../store/useAuth";
 
 const Login = () => {
+    document.title = "User Login - Auth App Created By Ghs Julian"
     const navigate = useNavigate()
     const { loginNow, isSigningIn } = useAuthStore();
     const msgRef = useRef(null);
@@ -97,7 +98,7 @@ const Login = () => {
                 />
                 {password !== ""&&<div onClick={showPassword}>{isShow ? "Hide" : "Show"}</div>}
             </div>
-            <button onClick={handleLogin} className="submit-btn">
+            <button disabled={isSigningIn} onClick={handleLogin} className="submit-btn">
                 {isSigningIn && <div className="loading"></div>}
                 <div ref={btnTextRef} id="text">
                     Login Now

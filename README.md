@@ -38,6 +38,8 @@
 
 **It has all the advance functionalities which I've used in it. For more details about this project or if you want to see the project sample like screenshot of UI, you can scroll down in this readme file.**
 
+**User can reset his password easily and otp will be sent to his gmail account and then when user verify the otp from his email. It will open new password option.**
+
 **For more details see the project live demo...**
 
 **Don't forget to thanks me !**

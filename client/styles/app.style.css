@@ -163,6 +163,22 @@ p {
     font-weight: 700;
     cursor: pointer;
 }
+.main-container .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.links a {
+    text-decoration: none;
+    width: 90%;
+    padding: 0.5rem 0;
+    margin: 0.6rem 0;
+    text-align: left;
+    font-weight: 800;
+    color: var(--h3);
+    cursor: pointer;
+}
 /*--> Profile  Page <--*/
 .profile-page {
     width: 400px;
@@ -249,29 +265,68 @@ p {
     color: var(--color);
 }
 .user-info .btn-area {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.5rem;
 }
 .btn-area button {
     outline: none;
     border: none;
     border-radius: 5px;
-    padding: 0.6rem 1rem;
+    padding: 0.6rem 0.4rem;
     background: transparent;
     font-weight: 800;
-    width: 100px;
+    width: 90px;
 }
 .btn-area #edit {
     background: var(--h3);
     color: var(--white);
 }
+.btn-area #log {
+    background: #0a5b02;
+    color: var(--white);
+}
 .btn-area #del {
     background: var(--error);
     color: var(--white);
+    width: 80px;
+    font-size: 13px;
 }
+.msg-box-error {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: 9000;
+    background: var(--error);
+    color: var(--white);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+.msg-box-success {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: 9000;
+    background: var(--success);
+    color: var(--white);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+
 /*--> Mobile Responsive <--*/
 @media (max-width: 768px) {
     .main-container {

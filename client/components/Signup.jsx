@@ -4,6 +4,7 @@ import MainContainer from "../layouts/MainContainer";
 import useAuthStore from "../store/useAuth";
 
 const Signup = () => {
+    document.title = "User Signup Create New Account - Auth App Created By Ghs Julian"
     const navigate = useNavigate()
     const { signupNow, isSigningUp } = useAuthStore();
     const msgRef = useRef(null);
@@ -143,7 +144,7 @@ const Signup = () => {
                     </div>
                 )}
             </div>
-            <button onClick={handleSignup} className="submit-btn">
+            <button disabled={isSigningUp} onClick={handleSignup} className="submit-btn">
                 {isSigningUp && <div className="loading"></div>}
                 <div ref={btnTextRef} id="text">
                     Create Now

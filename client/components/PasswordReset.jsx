@@ -4,6 +4,8 @@ import MainContainer from "../layouts/MainContainer";
 import useAuthStore from "../store/useAuth";
 
 const PasswordReset = () => {
+    document.title = "Reset Your Password - Auth App Created By Ghs Julian";
+    const navigate = useNavigate();
     const { OTP, resetNow, sendOTP, issendingOTP, isReseting } = useAuthStore();
     const headerRef = useRef(null);
     const msgRef = useRef(null);
@@ -65,6 +67,7 @@ const PasswordReset = () => {
                 headerRef.current.textContent = "Create New Password";
                 newPasswordRef.current.removeAttribute("hidden");
                 setisNewPassword(true);
+                
             }
         } else {
             if (!isValid()) return;
@@ -88,7 +91,9 @@ const PasswordReset = () => {
         } else {
             // TODO : API Logic will be applied here...
             // alert("New Password Can Be Changed");
-            await resetNow(newPassword,msgRef,btnTextRef);
+            await resetNow(newPassword, msgRef, btnTextRef);
+            setisNewPassword(true);
+            navigate("/profile");
         }
         setTimeout(() => {
             msgRef.current.textContent = "";
@@ -128,6 +133,7 @@ const PasswordReset = () => {
                 placeholder="Enter New Password(6)"
             />
             <button
+                disabled={issendingOTP || isReseting}
                 onClick={isNewPassword ? resetPassword : handleClick}
                 className="submit-btn"
             >

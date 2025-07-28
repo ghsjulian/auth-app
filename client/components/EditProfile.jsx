@@ -1,8 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 import MainContainer from "../layouts/MainContainer";
 import profile from "../images/ghs.png";
+import useAuthStore from "../store/useAuth";
 
 const EditProfile = () => {
+    document.title = "Edit Profile - Auth App Created By Ghs Julian";
+    const navigate = useNavigate();
+    const { authUser, updatePersonalInfo, isUpdating, changePassword } =
+        useAuthStore();
     const headerRef = useRef(null);
     const msgRef = useRef(null);
     const nameRef = useRef(null);
@@ -11,14 +17,23 @@ const EditProfile = () => {
     const newPasswordRef = useRef(null);
     const btnTextRef = useRef(null);
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
+    const [avatar, setAvatar] = useState(authUser?.avatar);
+    const [name, setName] = useState(authUser?.name);
+    const [email, setEmail] = useState(authUser?.email);
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
     const [showOld, setShowOldPassword] = useState(false);
     const [showNew, setShowNewPassword] = useState(false);
 
+    const handleFileChange = e => {
+        let file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = result => {
+            setAvatar(reader.result);
+        };
+        reader.readAsDataURL(file);
+    };
     const showMsg = (type, msg) => {
         if (type) {
             msgRef.current.classList.add("success");
@@ -32,18 +47,26 @@ const EditProfile = () => {
             msgRef.current.textContent = "";
         }, 2500);
     };
-    const handleClick = e => {
+    const handleClick = async e => {
         e.preventDefault();
         if (isUpdatingPassword) {
             // password updating here...
             if (oldPassword?.trim() === "") {
                 showMsg(false, "Please Enter Old Password");
                 return;
-            }else if (newPassword?.trim() === "") {
+            } else if (newPassword?.trim() === "") {
                 showMsg(false, "Please Enter New Password");
                 return;
-            }else {
-                console.log("Change Password Will be call here...");
+            } else {
+                // console.log("Change Password Will be call here...");
+                await changePassword(
+                    newPassword,
+                    oldPassword,
+                    msgRef,
+                    btnTextRef,
+                    navigate,
+                    setIsUpdatingPassword
+                );
             }
         } else {
             if (name?.trim() === "") {
@@ -59,6 +82,13 @@ const EditProfile = () => {
             ) {
                 showMsg(false, "Invalid Email Address");
                 return;
+            } else {
+                const data = {
+                    name: name.trim(),
+                    email: email.trim(),
+                    avatar: avatar
+                };
+                await updatePersonalInfo(data, msgRef, btnTextRef, navigate);
             }
         }
     };
@@ -68,11 +98,18 @@ const EditProfile = () => {
             <h3 ref={headerRef}>
                 {isUpdatingPassword ? "Change Password" : "Edit Profile"}
             </h3>
-            {!isUpdatingPassword && <img src={profile} alt="User Profile" />}
+            {!isUpdatingPassword && <img src={avatar} alt="User Profile" />}
             <span ref={msgRef}></span>
             {!isUpdatingPassword && (
                 <>
                     <label htmlFor="user-avatar">Select A Photo</label>
+                    <input
+                        type="file"
+                        id="user-avatar"
+                        hidden={true}
+                        accept="/images/*"
+                        onChange={handleFileChange}
+                    />
                     <input
                         ref={nameRef}
                         onChange={e => setName(e.target.value)}
@@ -123,7 +160,7 @@ const EditProfile = () => {
                 </>
             )}
 
-            <button onClick={handleClick}>
+            <button disabled={isUpdating} onClick={handleClick}>
                 <div ref={btnTextRef}>Update Now</div>
             </button>
             <p>
@@ -134,11 +171,18 @@ const EditProfile = () => {
                     onClick={e => {
                         e.preventDefault();
                         setIsUpdatingPassword(!isUpdatingPassword);
+                        document.title = "Change Password - Auth App Created By Ghs Julian"
                     }}
                 >
                     Click Here
                 </a>
             </p>
+            {isUpdatingPassword && (
+                <p>
+                    Forgot Password
+                    <NavLink to="/reset-password">Reset Password</NavLink>
+                </p>
+            )}
         </MainContainer>
     );
 };

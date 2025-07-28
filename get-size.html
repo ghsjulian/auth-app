@@ -1,0 +1,22 @@
+<input type="file" id="fileInput" />
+
+<script>
+  function formatFileSize(bytes) {
+    const units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    let i = 0;
+    let size = bytes;
+    while (size >= 1024 && i < units.length - 1) {
+      size /= 1024;
+      i++;
+    }
+    return `${size.toFixed(2)} ${units[i]}`;
+  }
+
+  document.getElementById('fileInput').addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+      console.log("File Name:", file.name);
+      console.log("File Size:", formatFileSize(file.size)); // ✅ converted size
+    }
+  });
+</script>
